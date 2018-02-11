@@ -1,0 +1,10 @@
+query getAllTickets {
+  databaseGetAllTickets {
+    id
+    topic
+    closed
+    pinned
+    createdAt
+    updatedAt
+  }
+}

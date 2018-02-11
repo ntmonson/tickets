@@ -1,7 +1,7 @@
 import DataType from 'sequelize';
 import Model from '../sequelize';
 
-const Post = Model.define('Comment', {
+const Post = Model.define('Post', {
   id: {
     type: DataType.UUID,
     defaultValue: DataType.UUIDV1,

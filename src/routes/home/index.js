@@ -9,18 +9,18 @@
 
 import React from 'react';
 import Home from './Home';
-import newsQuery from './news.graphql';
+import ticketsQuery from './tickets.graphql';
 import Layout from '../../components/Layout';
 
 async function action({ client }) {
   const data = await client.query({
-    query: newsQuery,
+    query: ticketsQuery,
   });
   return {
     title: 'React Starter Kit',
     component: (
       <Layout>
-        <Home news={data.reactjsGetAllNews} />
+        <Home tickets={data.reactjsGetAllNews} />
       </Layout>
     ),
   };

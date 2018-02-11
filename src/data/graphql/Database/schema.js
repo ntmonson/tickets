@@ -20,6 +20,14 @@ import {
   mutation as ToggleTicketPinned,
   resolvers as ToggleTicketPinnedResolver,
 } from './tickets/ToggleTicketPinned';
+import {
+  mutation as CreatePost,
+  resolvers as CreatePostResolver,
+} from './posts/CreatePost';
+import {
+  mutation as DeletePost,
+  resolvers as DeletePostResolver,
+} from './posts/DeletePost';
 
 export const schema = [...GetAllTickets];
 
@@ -29,6 +37,8 @@ export const mutations = [
   ...CreateTicket,
   ...ToggleTicketStatus,
   ...ToggleTicketPinned,
+  ...CreatePost,
+  ...DeletePost,
 ];
 
 export const resolvers = merge(
@@ -36,4 +46,6 @@ export const resolvers = merge(
   ToggleTicketResolver,
   GetAllTicketsResolvers,
   ToggleTicketPinnedResolver,
+  CreatePostResolver,
+  DeletePostResolver,
 );

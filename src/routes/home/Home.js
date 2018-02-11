@@ -11,7 +11,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql, compose } from 'react-apollo';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-import newsQuery from './news.graphql';
+import ticketsQuery from './tickets.graphql';
+import Ticket from '../../components/Ticket/Ticket';
+import createTicket from './createTicket.graphql';
 import s from './Home.css';
 
 class Home extends React.Component {
@@ -28,30 +30,59 @@ class Home extends React.Component {
     }).isRequired,
   };
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      newTicketInput: '',
+    };
+  }
+
+  handleInputChange = e => {
+    const val = e.target.value;
+    this.setState({ newTicketInput: val });
+  };
+
+  handleAddTicketClick = () => {
+    this.props.addTicket(this.state.newTicketInput);
+    this.setState({ newTicketInput: '' });
+  };
+
   render() {
-    const { data: { loading, reactjsGetAllNews } } = this.props;
+    const { data: { loading, databaseGetAllTickets } } = this.props;
     return (
       <div className={s.root}>
         <div className={s.container}>
-          <h1>React.js News</h1>
+          <h1>Tickets:</h1>
+          <div>New Ticket:</div>
+          <input
+            type="text"
+            value={this.state.newTicketInput}
+            onChange={this.handleInputChange}
+          />
+          <button onClick={this.handleAddTicketClick}>Add</button>
           {loading
             ? 'Loading...'
-            : reactjsGetAllNews.map(item => (
-                <article key={item.link} className={s.newsItem}>
-                  <h1 className={s.newsTitle}>
-                    <a href={item.link}>{item.title}</a>
-                  </h1>
-                  <div
-                    className={s.newsDesc}
-                    // eslint-disable-next-line react/no-danger
-                    dangerouslySetInnerHTML={{ __html: item.content }}
-                  />
-                </article>
-              ))}
+            : databaseGetAllTickets.map(ticket => <Ticket ticket={ticket} />)}
         </div>
       </div>
     );
   }
 }
+const graphqlQueries = compose(
+  graphql(ticketsQuery),
+  graphql(createTicket, {
+    name: 'addTicket',
+    options: {
+      update: (proxy, { data: { databaseCreateTicket } }) => {
+        const data = proxy.readQuery({ query: ticketsQuery });
+        data.databaseGetAllTickets.push(databaseCreateTicket);
+        proxy.writeQuery({ query: ticketsQuery, data });
+      },
+    },
+    props: ({ addTicket }) => ({
+      addTicket: topic => addTicket({ variables: { topic } }),
+    }),
+  }),
+);
 
-export default compose(withStyles(s), graphql(newsQuery))(Home);
+export default compose(withStyles(s), graphqlQueries)(Home);
