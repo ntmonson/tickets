@@ -1,10 +1,11 @@
-import { Ticket } from 'data/models';
+import { Ticket, Post } from 'data/models';
 
 export const mutation = [
   `
   # Creates a new ticket in the database
   databaseCreateTicket(
     topic: String!
+    post: String
   ): Ticket
 `,
 ];
@@ -26,6 +27,11 @@ export const resolvers = {
       const ticket = await Ticket.create({
         topic: args.topic,
       });
+
+      if (args.post) {
+        const post = Post.create({ content: args.post, ticketId: ticket.id });
+        ticket.posts = [post];
+      }
 
       return ticket;
     },

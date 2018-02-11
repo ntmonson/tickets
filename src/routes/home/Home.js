@@ -13,7 +13,6 @@ import { graphql, compose } from 'react-apollo';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import ticketsQuery from './tickets.graphql';
 import TicketTable from '../../components/TicketTable/TicketTable';
-import createTicket from './createTicket.graphql';
 import s from './Home.css';
 
 class Home extends React.Component {
@@ -22,13 +21,11 @@ class Home extends React.Component {
       loading: PropTypes.bool.isRequired,
       databaseGetAllTickets: PropTypes.array.isRequired,
     }).isRequired,
-    // addTicket: PropTypes.func.isRequired,
   };
 
   constructor(props) {
     super(props);
     this.state = {
-      // newTicketInput: '',
       filterType: 'all',
     };
   }
@@ -47,16 +44,6 @@ class Home extends React.Component {
         return tickets;
     }
   };
-
-  // handleInputChange = e => {
-  //   const val = e.target.value;
-  //   this.setState({ newTicketInput: val });
-  // };
-
-  // handleAddTicketClick = () => {
-  //   this.props.addTicket(this.state.newTicketInput);
-  //   this.setState({ newTicketInput: '' });
-  // };
 
   handleFilterChange = filterType => {
     this.setState({ filterType });
@@ -104,34 +91,12 @@ class Home extends React.Component {
               </button>
             </li>
           </ul>
-          {/* <div>New Ticket:</div>
-          <input
-            type="text"
-            value={this.state.newTicketInput}
-            onChange={this.handleInputChange}
-          />
-          <button onClick={this.handleAddTicketClick}>Add</button> */}
           {loading ? 'Loading...' : <TicketTable tickets={filteredTickets} />}
         </div>
       </div>
     );
   }
 }
-const graphqlQueries = compose(
-  graphql(ticketsQuery),
-  graphql(createTicket, {
-    name: 'addTicket',
-    options: {
-      update: (proxy, { data: { databaseCreateTicket } }) => {
-        const data = proxy.readQuery({ query: ticketsQuery });
-        data.databaseGetAllTickets.push(databaseCreateTicket);
-        proxy.writeQuery({ query: ticketsQuery, data });
-      },
-    },
-    props: ({ addTicket }) => ({
-      addTicket: topic => addTicket({ variables: { topic } }),
-    }),
-  }),
-);
+const graphqlQueries = compose(graphql(ticketsQuery));
 
 export default compose(withStyles(s), graphqlQueries)(Home);
