@@ -17,10 +17,10 @@ async function action({ client }) {
     query: ticketsQuery,
   });
   return {
-    title: 'React Starter Kit',
+    title: 'Nick Monson Ticket App',
     component: (
       <Layout>
-        <Home tickets={data.reactjsGetAllNews} />
+        <Home tickets={data} />
       </Layout>
     ),
   };

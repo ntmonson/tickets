@@ -1,0 +1,10 @@
+mutation toggleTicketStatus($id: String!) {
+  databaseToggleTicketStatus(id: $id) {
+    id
+    topic
+    closed
+    pinned
+    createdAt
+    updatedAt
+  }
+}

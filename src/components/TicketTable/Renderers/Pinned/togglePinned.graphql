@@ -1,0 +1,10 @@
+mutation toggleTicketPinned($id: String!) {
+  databaseToggleTicketPinned(id: $id) {
+    id
+    topic
+    closed
+    pinned
+    createdAt
+    updatedAt
+  }
+}

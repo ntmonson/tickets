@@ -6,9 +6,7 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE.txt file in the root directory of this source tree.
  */
-
 /* eslint-disable global-require */
-
 // The top-level (parent) route
 const routes = {
   path: '',
@@ -20,6 +18,11 @@ const routes = {
     {
       path: '',
       load: () => import(/* webpackMode: 'eager' */ './home'),
+    },
+
+    {
+      path: '/addtickets',
+      load: () => import(/* test */ './addtickets'),
     },
 
     // Wildcard routes, e.g. { path: '(.*)', ... } (must go last)
