@@ -1,9 +1,15 @@
-mutation createTicket($topic: String!) {
-  databaseCreateTicket(topic: $topic) {
+mutation createTicket($topic: String!, $post: String!) {
+  databaseCreateTicket(topic: $topic, post: $post) {
     id
     topic
     closed
     pinned
+    posts {
+      id
+      content
+      createdAt
+      updatedAt
+    }
     createdAt
     updatedAt
   }

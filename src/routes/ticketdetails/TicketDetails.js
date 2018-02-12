@@ -107,7 +107,7 @@ TicketDetails.propTypes = {
       posts: PropTypes.array.isRequired,
       topic: PropTypes.string.isRequired,
       updatedAt: PropTypes.string.isRequired,
-    }).isRequired,
+    }),
   }).isRequired,
   addPost: PropTypes.func.isRequired,
 };

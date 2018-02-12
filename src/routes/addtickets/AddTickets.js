@@ -105,8 +105,7 @@ const graphqlQueries = compose(
   graphql(createTicket, {
     name: 'addTicket',
     props: ({ addTicket }) => ({
-      addTicket: (topic, content) =>
-        addTicket({ variables: { topic, content } }),
+      addTicket: (topic, post) => addTicket({ variables: { topic, post } }),
     }),
     options: {
       update: (proxy, { data: { databaseCreateTicket } }) => {
