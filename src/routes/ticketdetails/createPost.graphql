@@ -1,0 +1,9 @@
+mutation createPost($content: String!, $ticketId: String!) {
+  databaseCreatePost(content: $content, ticketId: $ticketId) {
+    id
+    content
+    ticketId
+    createdAt
+    updatedAt
+  }
+}

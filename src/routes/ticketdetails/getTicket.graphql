@@ -1,0 +1,17 @@
+query getTicket($id: String!) {
+  databaseGetTicket(id: $id) {
+    id
+    topic
+    closed
+    pinned
+    posts {
+      id
+      content
+      ticketId
+      createdAt
+      updatedAt
+    }
+    createdAt
+    updatedAt
+  }
+}
