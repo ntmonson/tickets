@@ -29,3 +29,34 @@ input[type=text] {
   margin: 8px 0;
   box-sizing: border-box;
 }
+
+.buttonBlue {
+  background-color: #008cba;
+  border: none;
+  color: white;
+  padding: 5px 24px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  float: right;
+  cursor: pointer;
+}
+
+.buttonClear {
+  background-color: transparent;
+  border: none;
+  color: #00e;
+  padding: 5px 24px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  float: right;
+  cursor: pointer;
+}
+
+button:disabled,
+button[disabled] {
+  background-color: rgb(3, 53, 70);
+  color: #666;
+  cursor: not-allowed;
+}

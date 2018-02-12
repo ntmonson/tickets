@@ -61,11 +61,13 @@ const Ticket = props => {
 };
 
 Ticket.propTypes = {
-  tickets: PropTypes.shape({
-    closed: PropTypes.number.isRequired,
-    pinned: PropTypes.number.isRequired,
-    topic: PropTypes.string.isRequired,
-  }).isRequired,
+  tickets: PropTypes.arrayOf(
+    PropTypes.shape({
+      closed: PropTypes.number.isRequired,
+      pinned: PropTypes.number.isRequired,
+      topic: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
 };
 
 export default withStyles(reactTableCss)(Ticket);

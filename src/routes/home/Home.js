@@ -97,6 +97,8 @@ class Home extends React.Component {
     );
   }
 }
-const graphqlQueries = compose(graphql(ticketsQuery));
+const graphqlQueries = compose(
+  graphql(ticketsQuery, { options: { pollInterval: 5000 } }),
+);
 
 export default compose(withStyles(s), graphqlQueries)(Home);

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { graphql, compose } from 'react-apollo';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import createTicket from './createTicket.graphql';
+import ticketsQuery from '../../routes/home/tickets.graphql';
 import s from './AddTickets.css';
 
 class AddTickets extends React.Component {
@@ -15,7 +16,12 @@ class AddTickets extends React.Component {
     this.state = {
       newTicketTopic: '',
       newTicketPost: '',
+      newTicket: [],
     };
+  }
+
+  componentDidMount() {
+    this.topicInput.focus();
   }
 
   handleTopicChange = e => {
@@ -28,9 +34,11 @@ class AddTickets extends React.Component {
     this.setState({ newTicketPost: val });
   };
 
-  handleAddTicketClick = () => {
+  handleAddTicketClick = async () => {
     const { newTicketTopic, newTicketPost } = this.state;
-    this.props.addTicket(newTicketTopic, newTicketPost);
+    const data = await this.props.addTicket(newTicketTopic, newTicketPost);
+    const { data: { databaseCreateTicket: newTicket } } = data;
+    this.setState({ newTicket: [...this.state.newTicket, newTicket] });
     this.clearInputState();
   };
 
@@ -42,13 +50,16 @@ class AddTickets extends React.Component {
     return (
       <div className={s.root}>
         <div className={s.container}>
-          <div>New Ticket:</div>
+          <h3>New Ticket:</h3>
           <label htmlFor="topic">
             Topic
             <input
               type="text"
               maxLength="255"
               name="topic"
+              ref={input => {
+                this.topicInput = input;
+              }}
               value={this.state.newTicketTopic}
               onChange={this.handleTopicChange}
             />
@@ -65,8 +76,22 @@ class AddTickets extends React.Component {
               />
             </label>
           </div>
-          <button onClick={this.handleAddTicketClick}>Add</button>
+          <button
+            disabled={!this.state.newTicketTopic.length}
+            className={s.buttonBlue}
+            onClick={this.handleAddTicketClick}
+          >
+            Submit
+          </button>
+          <button className={s.buttonClear} onClick={this.clearInputState}>
+            Clear
+          </button>
         </div>
+        <ol>
+          {this.state.newTicket.map(ticket => (
+            <li>Ticket: {ticket.id} added</li>
+          ))}
+        </ol>
       </div>
     );
   }
@@ -79,6 +104,13 @@ const graphqlQueries = compose(
       addTicket: (topic, content) =>
         addTicket({ variables: { topic, content } }),
     }),
+    options: {
+      update: (proxy, { data: { databaseCreateTicket } }) => {
+        const data = proxy.readQuery({ query: ticketsQuery });
+        data.databaseGetAllTickets.push(databaseCreateTicket);
+        proxy.writeQuery({ query: ticketsQuery, data });
+      },
+    },
   }),
 );
 
