@@ -25,6 +25,11 @@ const routes = {
       load: () => import(/* test */ './addtickets'),
     },
 
+    {
+      path: '/ticketdetails/:id',
+      load: () => import('./ticketdetails'),
+    },
+
     // Wildcard routes, e.g. { path: '(.*)', ... } (must go last)
     {
       path: '(.*)',

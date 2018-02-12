@@ -8,13 +8,13 @@ import Closed from './Renderers/Closed/Closed';
 import Link from '../Link/Link';
 
 const Ticket = props => {
-  const { tickets } = props;
-  const columns = [
+  const { tickets, showPinnedAndStatus } = props;
+  let columns = [
     {
       Header: 'Id',
       accessor: 'id',
       Cell: row => (
-        <Link to={`/tickets/${row.original.id}`}>{row.original.id}</Link>
+        <Link to={`/ticketdetails/${row.original.id}`}>{row.original.id}</Link>
       ),
     },
     {
@@ -40,6 +40,11 @@ const Ticket = props => {
       Cell: row => <Closed value={row.value} ticketId={row.original.id} />,
     },
   ];
+  if (!showPinnedAndStatus) {
+    columns = columns.filter(
+      column => column.accessor !== 'pinned' && column.accessor !== 'closed',
+    );
+  }
   return (
     <ReactTable
       data={tickets}
@@ -68,6 +73,11 @@ Ticket.propTypes = {
       topic: PropTypes.string.isRequired,
     }),
   ).isRequired,
+  showPinnedAndStatus: PropTypes.bool,
+};
+
+Ticket.defaultProps = {
+  showPinnedAndStatus: true,
 };
 
 export default withStyles(reactTableCss)(Ticket);

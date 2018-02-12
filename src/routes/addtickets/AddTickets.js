@@ -4,6 +4,7 @@ import { graphql, compose } from 'react-apollo';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import createTicket from './createTicket.graphql';
 import ticketsQuery from '../../routes/home/tickets.graphql';
+import TicketTable from '../../components/TicketTable/TicketTable';
 import s from './AddTickets.css';
 
 class AddTickets extends React.Component {
@@ -16,7 +17,7 @@ class AddTickets extends React.Component {
     this.state = {
       newTicketTopic: '',
       newTicketPost: '',
-      newTicket: [],
+      newTickets: [],
     };
   }
 
@@ -38,7 +39,7 @@ class AddTickets extends React.Component {
     const { newTicketTopic, newTicketPost } = this.state;
     const data = await this.props.addTicket(newTicketTopic, newTicketPost);
     const { data: { databaseCreateTicket: newTicket } } = data;
-    this.setState({ newTicket: [...this.state.newTicket, newTicket] });
+    this.setState({ newTickets: [...this.state.newTickets, newTicket] });
     this.clearInputState();
   };
 
@@ -86,12 +87,15 @@ class AddTickets extends React.Component {
           <button className={s.buttonClear} onClick={this.clearInputState}>
             Clear
           </button>
+          {this.state.newTickets.length ? (
+            <TicketTable
+              tickets={this.state.newTickets}
+              showPinnedAndStatus={false}
+            />
+          ) : (
+            <h3>Add new tickets to view them here...</h3>
+          )}
         </div>
-        <ol>
-          {this.state.newTicket.map(ticket => (
-            <li>Ticket: {ticket.id} added</li>
-          ))}
-        </ol>
       </div>
     );
   }

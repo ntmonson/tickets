@@ -5,7 +5,7 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import togglePinned from './togglePinned.graphql';
 import s from './Pinned.css';
 
-const Pointer = ({ value, ticketId, togglePin }) => {
+const Pinned = ({ value, ticketId, togglePin }) => {
   const color = value ? 'Gold' : '';
   return (
     <button style={{ color }} onClick={() => togglePin(ticketId)}>
@@ -14,8 +14,8 @@ const Pointer = ({ value, ticketId, togglePin }) => {
   );
 };
 
-Pointer.propTypes = {
-  value: PropTypes.bool.isRequired,
+Pinned.propTypes = {
+  value: PropTypes.number.isRequired,
   ticketId: PropTypes.string.isRequired,
   togglePin: PropTypes.func.isRequired,
 };
@@ -27,4 +27,4 @@ const graphqlQueries = graphql(togglePinned, {
   }),
 });
 
-export default compose(withStyles(s), graphqlQueries)(Pointer);
+export default compose(withStyles(s), graphqlQueries)(Pinned);
