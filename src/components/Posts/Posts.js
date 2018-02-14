@@ -1,5 +1,5 @@
+/* @flow */
 import React from 'react';
-import PropTypes from 'prop-types';
 import ReactTable from 'react-table';
 import reactTableCss from 'react-table/react-table.css';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
@@ -15,25 +15,27 @@ const columns = [
   },
 ];
 
-// Exported for testing, see https://github.com/kriasoft/react-starter-kit/issues/378
-export const Posts = ({ posts }) => (
-  <ReactTable
-    data={posts}
-    columns={columns}
-    minRows={0}
-    showPageSizeOptions={false}
-  />
-);
+export type Props = {
+  posts: Array<{
+    id: string,
+    content: string,
+    createdAt: string,
+    updatedAt: string,
+  }>,
+};
 
-Posts.propTypes = {
-  posts: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      content: PropTypes.string.isRequired,
-      createdAt: PropTypes.string.isRequired,
-      updatedAt: PropTypes.string.isRequired,
-    }).isRequired,
-  ).isRequired,
+// Exported for testing, see https://github.com/kriasoft/react-starter-kit/issues/378
+export const Posts = (props: Props) => {
+  const { posts } = props;
+
+  return (
+    <ReactTable
+      data={posts}
+      columns={columns}
+      minRows={0}
+      showPageSizeOptions={false}
+    />
+  );
 };
 
 export default withStyles(reactTableCss)(Posts);

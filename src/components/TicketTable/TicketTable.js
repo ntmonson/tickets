@@ -1,5 +1,5 @@
+/* @flow */
 import React from 'react';
-import PropTypes from 'prop-types';
 import ReactTable from 'react-table';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import reactTableCss from 'react-table/react-table.css';
@@ -9,8 +9,17 @@ import Pinned from './Renderers/Pinned/Pinned'; // eslint-disable-line
 import Closed from './Renderers/Closed/Closed'; // eslint-disable-line
 import Link from '../Link/Link';
 
+export type Props = {
+  tickets: Array<{
+    closed: number,
+    pinned: number,
+    topic: string,
+  }>,
+  showPinnedAndStatus?: boolean,
+};
+
 // Exported for testing, see https://github.com/kriasoft/react-starter-kit/issues/378
-export const Ticket = props => {
+export const Ticket = (props: Props) => {
   const { tickets, showPinnedAndStatus } = props;
   let columns = [
     {
@@ -66,17 +75,6 @@ export const Ticket = props => {
       }}
     />
   );
-};
-
-Ticket.propTypes = {
-  tickets: PropTypes.arrayOf(
-    PropTypes.shape({
-      closed: PropTypes.number.isRequired,
-      pinned: PropTypes.number.isRequired,
-      topic: PropTypes.string.isRequired,
-    }),
-  ).isRequired,
-  showPinnedAndStatus: PropTypes.bool,
 };
 
 Ticket.defaultProps = {

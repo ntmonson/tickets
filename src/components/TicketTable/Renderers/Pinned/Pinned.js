@@ -1,24 +1,25 @@
+/* @flow */
 import React from 'react';
-import PropTypes from 'prop-types';
 import { graphql, compose } from 'react-apollo';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import togglePinned from './togglePinned.graphql';
 import s from './Pinned.css';
 
+export type Props = {
+  value: number,
+  ticketId: string,
+  togglePin: Function,
+};
+
 // Exported for testing, see https://github.com/kriasoft/react-starter-kit/issues/378
-export const Pinned = ({ value, ticketId, togglePin }) => {
+export const Pinned = (props: Props) => {
+  const { value, ticketId, togglePin } = props;
   const color = value ? 'Gold' : '';
   return (
     <button style={{ color }} onClick={() => togglePin(ticketId)}>
       <i className="fas fa-thumbtack" />
     </button>
   );
-};
-
-Pinned.propTypes = {
-  value: PropTypes.number.isRequired,
-  ticketId: PropTypes.string.isRequired,
-  togglePin: PropTypes.func.isRequired,
 };
 
 const graphqlQueries = graphql(togglePinned, {

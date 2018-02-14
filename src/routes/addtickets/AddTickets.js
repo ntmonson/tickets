@@ -1,5 +1,5 @@
+/* @flow */
 import React from 'react';
-import PropTypes from 'prop-types';
 import { graphql, compose } from 'react-apollo';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import createTicket from './createTicket.graphql';
@@ -7,13 +7,11 @@ import ticketsQuery from '../../routes/home/tickets.graphql';
 import TicketTable from '../../components/TicketTable/TicketTable';
 import s from './AddTickets.css';
 
+export type Props = { addTicket: Function };
+
 // Exported for testing, see https://github.com/kriasoft/react-starter-kit/issues/378
 export class AddTickets extends React.Component {
-  static propTypes = {
-    addTicket: PropTypes.func.isRequired,
-  };
-
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
     this.state = {
       newTicketTopic: '',
@@ -25,6 +23,8 @@ export class AddTickets extends React.Component {
   componentDidMount() {
     this.topicInput.focus();
   }
+
+  props: Props;
 
   handleTopicChange = e => {
     const val = e.target.value;

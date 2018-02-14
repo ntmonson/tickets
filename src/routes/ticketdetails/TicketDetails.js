@@ -1,5 +1,5 @@
+/* @flow */
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { graphql, compose } from 'react-apollo';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import createPost from './createPost.graphql';
@@ -10,14 +10,33 @@ import s from './TicketDetails.css';
 // Changing the name would be more confusing than ignoring the linter in this specific case.
 import Posts from '../../components/Posts/Posts'; // eslint-disable-line
 
+export type Props = {
+  ticketId: string,
+  toggleStat: Function,
+  data: {
+    loading: boolean,
+    databaseGetTicket?: {
+      closed: number,
+      createdAt: string,
+      id: string,
+      pinned: number,
+      posts: Array<any>,
+      topic: string,
+      updatedAt: string,
+    },
+  },
+  addPost: Function,
+};
+
 // Exported for testing, see https://github.com/kriasoft/react-starter-kit/issues/378
 export class TicketDetails extends Component {
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
     this.state = {
       newTicketPost: '',
     };
   }
+  props: Props;
   handlePostChange = e => {
     this.setState({ newTicketPost: e.target.value });
   };
@@ -79,9 +98,12 @@ export class TicketDetails extends Component {
               onClick={() => this.props.toggleStat(ticket.id)}
             >
               {ticket.closed ? (
-                <i className="fas fa-toggle-on" />
+                <i
+                  className="fas fa-toggle-on"
+                  data-fa-transform="rotate-180"
+                />
               ) : (
-                <i className="fas fa-toggle-off" />
+                <i className="fas fa-toggle-on" />
               )}
             </button>
           </div>
@@ -113,24 +135,6 @@ export class TicketDetails extends Component {
     );
   }
 }
-
-TicketDetails.propTypes = {
-  ticketId: PropTypes.string.isRequired,
-  toggleStat: PropTypes.func.isRequired,
-  data: PropTypes.shape({
-    loading: PropTypes.bool.isRequired,
-    databaseGetTicket: PropTypes.shape({
-      closed: PropTypes.number.isRequired,
-      createdAt: PropTypes.string.isRequired,
-      id: PropTypes.string.isRequired,
-      pinned: PropTypes.number.isRequired,
-      posts: PropTypes.array.isRequired,
-      topic: PropTypes.string.isRequired,
-      updatedAt: PropTypes.string.isRequired,
-    }),
-  }).isRequired,
-  addPost: PropTypes.func.isRequired,
-};
 
 const graphqlQueries = compose(
   graphql(getTicket, {
