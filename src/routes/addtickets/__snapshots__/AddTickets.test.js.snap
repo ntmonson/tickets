@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Add tickets AddTickets component renders correctly 1`] = `
+<div
+  className="root"
+>
+  <div
+    className="container"
+  >
+    <h3>
+      New Ticket:
+    </h3>
+    <label
+      htmlFor="topic"
+    >
+      Topic
+      <input
+        maxLength="255"
+        name="topic"
+        onChange={[Function]}
+        type="text"
+        value=""
+      />
+    </label>
+    <div>
+      <label
+        htmlFor="topic"
+      >
+        Content
+        <textarea
+          maxLength="255"
+          name="topic"
+          onChange={[Function]}
+          type="textarea"
+          value=""
+        />
+      </label>
+    </div>
+    <button
+      className="buttonBlue"
+      disabled={true}
+      onClick={[Function]}
+    >
+      Submit
+    </button>
+    <button
+      className="buttonClear"
+      onClick={[Function]}
+    >
+      Clear
+    </button>
+    <h3>
+      Add new tickets to view them here...
+    </h3>
+  </div>
+</div>
+`;

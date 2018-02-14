@@ -15,7 +15,8 @@ import ticketsQuery from './tickets.graphql';
 import TicketTable from '../../components/TicketTable/TicketTable';
 import s from './Home.css';
 
-class Home extends React.Component {
+// Exported for testing, see https://github.com/kriasoft/react-starter-kit/issues/378
+export class Home extends React.Component {
   static propTypes = {
     data: PropTypes.shape({
       loading: PropTypes.bool.isRequired,

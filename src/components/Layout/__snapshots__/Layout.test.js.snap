@@ -14,41 +14,17 @@ exports[`Layout renders children correctly 1`] = `
       >
         <a
           className="link"
-          href="/about"
+          href="/"
           onClick={[Function]}
         >
-          About
+          Ticket List
         </a>
         <a
           className="link"
-          href="/contact"
+          href="/addtickets"
           onClick={[Function]}
         >
-          Contact
-        </a>
-        <span
-          className="spacer"
-        >
-           | 
-        </span>
-        <a
-          className="link"
-          href="/login"
-          onClick={[Function]}
-        >
-          Log in
-        </a>
-        <span
-          className="spacer"
-        >
-          or
-        </span>
-        <a
-          className="link highlight"
-          href="/register"
-          onClick={[Function]}
-        >
-          Sign up
+          Add Ticket
         </a>
       </div>
       <a
@@ -66,113 +42,13 @@ exports[`Layout renders children correctly 1`] = `
         <span
           className="brandTxt"
         >
-          Your Company
+          Nick Monson Ticket App
         </span>
       </a>
-      <div
-        className="banner"
-      >
-        <h1
-          className="bannerTitle"
-        >
-          React
-        </h1>
-        <p
-          className="bannerDesc"
-        >
-          Complex web apps made easy
-        </p>
-      </div>
     </div>
   </div>
   <div
     className="child"
   />
-  <div
-    className="root"
-  >
-    <div
-      className="container"
-    >
-      <a
-        className="link"
-        href="https://gitter.im/kriasoft/react-starter-kit"
-      >
-        Ask a question
-      </a>
-      <span
-        className="spacer"
-      >
-        |
-      </span>
-      <a
-        className="link"
-        href="https://github.com/kriasoft/react-starter-kit/issues/new"
-      >
-        Report an issue
-      </a>
-    </div>
-  </div>
-  <div
-    className="root"
-  >
-    <div
-      className="container"
-    >
-      <span
-        className="text"
-      >
-        © Your Company
-      </span>
-      <span
-        className="spacer"
-      >
-        ·
-      </span>
-      <a
-        className="link"
-        href="/"
-        onClick={[Function]}
-      >
-        Home
-      </a>
-      <span
-        className="spacer"
-      >
-        ·
-      </span>
-      <a
-        className="link"
-        href="/admin"
-        onClick={[Function]}
-      >
-        Admin
-      </a>
-      <span
-        className="spacer"
-      >
-        ·
-      </span>
-      <a
-        className="link"
-        href="/privacy"
-        onClick={[Function]}
-      >
-        Privacy
-      </a>
-      <span
-        className="spacer"
-      >
-        ·
-      </span>
-      <a
-        className="link"
-        href="/not-found"
-        onClick={[Function]}
-      >
-        Not Found
-      </a>
-    </div>
-  </div>
 </div>
 `;

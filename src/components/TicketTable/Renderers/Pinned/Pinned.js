@@ -5,7 +5,8 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import togglePinned from './togglePinned.graphql';
 import s from './Pinned.css';
 
-const Pinned = ({ value, ticketId, togglePin }) => {
+// Exported for testing, see https://github.com/kriasoft/react-starter-kit/issues/378
+export const Pinned = ({ value, ticketId, togglePin }) => {
   const color = value ? 'Gold' : '';
   return (
     <button style={{ color }} onClick={() => togglePin(ticketId)}>

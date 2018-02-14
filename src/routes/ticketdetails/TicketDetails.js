@@ -5,9 +5,12 @@ import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import createPost from './createPost.graphql';
 import getTicket from './getTicket.graphql';
 import s from './TicketDetails.css';
-import Posts from '../../components/Posts/Posts';
+// Disabled lines below: Required to export a default and named component for testing.
+// Changing the name would be more confusing than ignoring the linter in this specific case.
+import Posts from '../../components/Posts/Posts'; // eslint-disable-line
 
-class TicketDetails extends Component {
+// Exported for testing, see https://github.com/kriasoft/react-starter-kit/issues/378
+export class TicketDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -100,7 +103,7 @@ TicketDetails.propTypes = {
   data: PropTypes.shape({
     loading: PropTypes.bool.isRequired,
     databaseGetTicket: PropTypes.shape({
-      closed: PropTypes.number.isRequired,
+      closed: PropTypes.bool.isRequired,
       createdAt: PropTypes.string.isRequired,
       id: PropTypes.string.isRequired,
       pinned: PropTypes.number.isRequired,

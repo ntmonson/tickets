@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { graphql, compose } from 'react-apollo';
-// import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import toggleStatus from './toggleStatus.graphql';
-// import s from './Pinned.css';
 
-const Closed = ({ value, ticketId, toggleStat }) => {
+// Exported for testing, see https://github.com/kriasoft/react-starter-kit/issues/378
+export const Closed = ({ value, ticketId, toggleStat }) => {
   const color = value ? 'Red' : 'Green';
   return (
     <button style={{ color }} onClick={() => toggleStat(ticketId)}>

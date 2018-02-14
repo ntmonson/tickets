@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Link Handles the click correctly, no default prevented 1`] = `
+<a
+  href="https://www.google.com/"
+  onClick={[Function]}
+>
+  <div>
+    Test child div
+  </div>
+</a>
+`;
+
+exports[`Link renders with children correctly 1`] = `
+<a
+  href="https://www.google.com/"
+  onClick={[Function]}
+>
+  <div>
+    Test child div
+  </div>
+</a>
+`;

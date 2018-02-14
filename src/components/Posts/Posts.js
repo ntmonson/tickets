@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ReactTable from 'react-table';
 import reactTableCss from 'react-table/react-table.css';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
-// import s from './TicketDetails.css';
+
 const columns = [
   {
     Header: 'Post',
@@ -14,7 +14,9 @@ const columns = [
     accessor: 'createdAt',
   },
 ];
-const Posts = ({ posts }) => (
+
+// Exported for testing, see https://github.com/kriasoft/react-starter-kit/issues/378
+export const Posts = ({ posts }) => (
   <ReactTable
     data={posts}
     columns={columns}

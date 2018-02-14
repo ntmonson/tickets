@@ -1,0 +1,253 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TicketDetails TicketDetails renders correctly, loading false, closed 0, pinned 0 1`] = `
+<div
+  className="root"
+>
+  <div
+    className="container"
+  >
+    <div
+      className="ticketDetail"
+    >
+      <span
+        className="detailHeader"
+      >
+        Ticket ID:
+      </span>
+      <br />
+      1234
+    </div>
+    <div
+      className="ticketDetail"
+    >
+      <span
+        className="detailHeader"
+      >
+        Topic:
+      </span>
+      <br />
+      Topic
+    </div>
+    <div
+      className="ticketDetail"
+    >
+      <span
+        className="detailHeader"
+      >
+        Last Post:
+      </span>
+      <br />
+      No posts made yet.
+    </div>
+    <div
+      className="ticketDetail"
+    >
+      <span
+        className="detailHeader"
+      >
+        Status:
+      </span>
+      <br />
+      Closed
+    </div>
+    <div>
+      <label
+        htmlFor="post"
+      >
+        Post
+        <textarea
+          maxLength="255"
+          name="post"
+          onChange={[Function]}
+          type="textarea"
+          value=""
+        />
+      </label>
+    </div>
+    <button
+      className="buttonBlue"
+      disabled={true}
+      onClick={[Function]}
+    >
+      Submit
+    </button>
+    <button
+      className="buttonClear"
+      onClick={[Function]}
+    >
+      Clear
+    </button>
+  </div>
+</div>
+`;
+
+exports[`TicketDetails TicketDetails renders correctly, loading false, closed 0, pinned 1 1`] = `
+<div
+  className="root"
+>
+  <div
+    className="container"
+  >
+    <div
+      className="ticketDetail"
+    >
+      <span
+        className="detailHeader"
+      >
+        Ticket ID:
+      </span>
+      <br />
+      1234
+    </div>
+    <div
+      className="ticketDetail"
+    >
+      <span
+        className="detailHeader"
+      >
+        Topic:
+      </span>
+      <br />
+      Topic
+    </div>
+    <div
+      className="ticketDetail"
+    >
+      <span
+        className="detailHeader"
+      >
+        Last Post:
+      </span>
+      <br />
+      No posts made yet.
+    </div>
+    <div
+      className="ticketDetail"
+    >
+      <span
+        className="detailHeader"
+      >
+        Status:
+      </span>
+      <br />
+      Closed
+    </div>
+    <div>
+      <label
+        htmlFor="post"
+      >
+        Post
+        <textarea
+          maxLength="255"
+          name="post"
+          onChange={[Function]}
+          type="textarea"
+          value=""
+        />
+      </label>
+    </div>
+    <button
+      className="buttonBlue"
+      disabled={true}
+      onClick={[Function]}
+    >
+      Submit
+    </button>
+    <button
+      className="buttonClear"
+      onClick={[Function]}
+    >
+      Clear
+    </button>
+  </div>
+</div>
+`;
+
+exports[`TicketDetails TicketDetails renders correctly, loading false, closed 1, pinned 1 1`] = `
+<div
+  className="root"
+>
+  <div
+    className="container"
+  >
+    <div
+      className="ticketDetail"
+    >
+      <span
+        className="detailHeader"
+      >
+        Ticket ID:
+      </span>
+      <br />
+      1234
+    </div>
+    <div
+      className="ticketDetail"
+    >
+      <span
+        className="detailHeader"
+      >
+        Topic:
+      </span>
+      <br />
+      Topic
+    </div>
+    <div
+      className="ticketDetail"
+    >
+      <span
+        className="detailHeader"
+      >
+        Last Post:
+      </span>
+      <br />
+      No posts made yet.
+    </div>
+    <div
+      className="ticketDetail"
+    >
+      <span
+        className="detailHeader"
+      >
+        Status:
+      </span>
+      <br />
+      Closed
+    </div>
+    <div>
+      <label
+        htmlFor="post"
+      >
+        Post
+        <textarea
+          maxLength="255"
+          name="post"
+          onChange={[Function]}
+          type="textarea"
+          value=""
+        />
+      </label>
+    </div>
+    <button
+      className="buttonBlue"
+      disabled={true}
+      onClick={[Function]}
+    >
+      Submit
+    </button>
+    <button
+      className="buttonClear"
+      onClick={[Function]}
+    >
+      Clear
+    </button>
+  </div>
+</div>
+`;
+
+exports[`TicketDetails TicketDetails renders correctly, loading true, closed 1, pinned 1 1`] = `
+<div>
+  Loading...
+</div>
+`;

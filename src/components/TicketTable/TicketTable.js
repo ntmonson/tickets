@@ -3,11 +3,14 @@ import PropTypes from 'prop-types';
 import ReactTable from 'react-table';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import reactTableCss from 'react-table/react-table.css';
-import Pinned from './Renderers/Pinned/Pinned';
-import Closed from './Renderers/Closed/Closed';
+// Disabled lines below: Required to export a default and named component for testing.
+// Changing the name would be more confusing than ignoring the linter in this specific case.
+import Pinned from './Renderers/Pinned/Pinned'; // eslint-disable-line
+import Closed from './Renderers/Closed/Closed'; // eslint-disable-line
 import Link from '../Link/Link';
 
-const Ticket = props => {
+// Exported for testing, see https://github.com/kriasoft/react-starter-kit/issues/378
+export const Ticket = props => {
   const { tickets, showPinnedAndStatus } = props;
   let columns = [
     {
