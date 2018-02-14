@@ -42,6 +42,7 @@ export class AddTickets extends React.Component {
     const { data: { databaseCreateTicket: newTicket } } = data;
     this.setState({ newTickets: [...this.state.newTickets, newTicket] });
     this.clearInputState();
+    this.topicInput.focus();
   };
 
   clearInputState = () => {
