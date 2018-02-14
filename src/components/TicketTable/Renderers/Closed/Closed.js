@@ -4,17 +4,24 @@ import { graphql, compose } from 'react-apollo';
 import toggleStatus from './toggleStatus.graphql';
 
 // Exported for testing, see https://github.com/kriasoft/react-starter-kit/issues/378
-export const Closed = ({ value, ticketId, toggleStat }) => {
-  const color = value ? 'Red' : 'Green';
+export const Closed = ({ value: closed, ticketId, toggleStat }) => {
+  const color = closed ? 'Red' : '#373277';
   return (
-    <button style={{ color }} onClick={() => toggleStat(ticketId)}>
-      <i className="fas fa-circle" />
-    </button>
+    <span>
+      {closed ? 'Closed' : 'Open'}
+      <button style={{ color }} onClick={() => toggleStat(ticketId)}>
+        {closed ? (
+          <i className="fas fa-toggle-off" />
+        ) : (
+          <i className="fas fa-toggle-on" />
+        )}
+      </button>
+    </span>
   );
 };
 
 Closed.propTypes = {
-  value: PropTypes.bool.isRequired,
+  value: PropTypes.number.isRequired,
   ticketId: PropTypes.string.isRequired,
   toggleStat: PropTypes.func.isRequired,
 };

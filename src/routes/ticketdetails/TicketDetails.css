@@ -47,6 +47,15 @@
   cursor: pointer;
 }
 
+button {
+  background-color: Transparent;
+  background-repeat: no-repeat;
+  border: none;
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+}
+
 button:disabled,
 button[disabled] {
   background-color: rgb(3, 53, 70);

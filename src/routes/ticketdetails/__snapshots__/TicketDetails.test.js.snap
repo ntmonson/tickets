@@ -50,6 +50,20 @@ exports[`TicketDetails TicketDetails renders correctly, loading false, closed 0,
       </span>
       <br />
       Closed
+      <button
+        onClick={[Function]}
+        style={
+          Object {
+            "color": "Red",
+            "fontSize": "1.25em",
+            "marginLeft": "5px",
+          }
+        }
+      >
+        <i
+          className="fas fa-toggle-on"
+        />
+      </button>
     </div>
     <div>
       <label
@@ -132,6 +146,20 @@ exports[`TicketDetails TicketDetails renders correctly, loading false, closed 0,
       </span>
       <br />
       Closed
+      <button
+        onClick={[Function]}
+        style={
+          Object {
+            "color": "Red",
+            "fontSize": "1.25em",
+            "marginLeft": "5px",
+          }
+        }
+      >
+        <i
+          className="fas fa-toggle-on"
+        />
+      </button>
     </div>
     <div>
       <label
@@ -214,6 +242,20 @@ exports[`TicketDetails TicketDetails renders correctly, loading false, closed 1,
       </span>
       <br />
       Closed
+      <button
+        onClick={[Function]}
+        style={
+          Object {
+            "color": "Red",
+            "fontSize": "1.25em",
+            "marginLeft": "5px",
+          }
+        }
+      >
+        <i
+          className="fas fa-toggle-on"
+        />
+      </button>
     </div>
     <div>
       <label

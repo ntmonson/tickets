@@ -1,31 +1,37 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Closed Closed renders correctly with value 0 1`] = `
-<button
-  onClick={[Function]}
-  style={
-    Object {
-      "color": "Green",
+<span>
+  Open
+  <button
+    onClick={[Function]}
+    style={
+      Object {
+        "color": "#373277",
+      }
     }
-  }
->
-  <i
-    className="fas fa-circle"
-  />
-</button>
+  >
+    <i
+      className="fas fa-toggle-on"
+    />
+  </button>
+</span>
 `;
 
 exports[`Closed Closed renders correctly with value 1 1`] = `
-<button
-  onClick={[Function]}
-  style={
-    Object {
-      "color": "Red",
+<span>
+  Closed
+  <button
+    onClick={[Function]}
+    style={
+      Object {
+        "color": "Red",
+      }
     }
-  }
->
-  <i
-    className="fas fa-circle"
-  />
-</button>
+  >
+    <i
+      className="fas fa-toggle-off"
+    />
+  </button>
+</span>
 `;

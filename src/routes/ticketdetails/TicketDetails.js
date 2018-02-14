@@ -4,6 +4,7 @@ import { graphql, compose } from 'react-apollo';
 import withStyles from 'isomorphic-style-loader/lib/withStyles';
 import createPost from './createPost.graphql';
 import getTicket from './getTicket.graphql';
+import toggleStatus from '../../components/TicketTable/Renderers/Closed/toggleStatus.graphql';
 import s from './TicketDetails.css';
 // Disabled lines below: Required to export a default and named component for testing.
 // Changing the name would be more confusing than ignoring the linter in this specific case.
@@ -37,6 +38,7 @@ export class TicketDetails extends Component {
       return <div>Loading...</div>;
     }
     const ticket = this.props.data.databaseGetTicket;
+    const statusColor = ticket.closed ? 'Red' : '#373277';
     const lastPost = ticket.posts[ticket.posts.length - 1];
     return (
       <div className={s.root}>
@@ -68,6 +70,20 @@ export class TicketDetails extends Component {
             <span className={s.detailHeader}>Status:</span>
             <br />
             {ticket.closed ? 'Closed' : 'Open'}
+            <button
+              style={{
+                color: statusColor,
+                fontSize: '1.25em',
+                marginLeft: '5px',
+              }}
+              onClick={() => this.props.toggleStat(ticket.id)}
+            >
+              {ticket.closed ? (
+                <i className="fas fa-toggle-on" />
+              ) : (
+                <i className="fas fa-toggle-off" />
+              )}
+            </button>
           </div>
           {ticket.posts.length ? <Posts posts={ticket.posts} /> : null}
           <div>
@@ -100,10 +116,11 @@ export class TicketDetails extends Component {
 
 TicketDetails.propTypes = {
   ticketId: PropTypes.string.isRequired,
+  toggleStat: PropTypes.func.isRequired,
   data: PropTypes.shape({
     loading: PropTypes.bool.isRequired,
     databaseGetTicket: PropTypes.shape({
-      closed: PropTypes.bool.isRequired,
+      closed: PropTypes.number.isRequired,
       createdAt: PropTypes.string.isRequired,
       id: PropTypes.string.isRequired,
       pinned: PropTypes.number.isRequired,
@@ -135,6 +152,12 @@ const graphqlQueries = compose(
         proxy.writeQuery({ query: getTicket, data });
       },
     },
+  }),
+  graphql(toggleStatus, {
+    name: 'toggleStat',
+    props: ({ toggleStat }) => ({
+      toggleStat: id => toggleStat({ variables: { id } }),
+    }),
   }),
 );
 export default compose(withStyles(s), graphqlQueries)(TicketDetails);
